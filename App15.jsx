@@ -10,22 +10,30 @@ class App15 extends Component {
         }
         this.textRef = React.createRef();
         this.passRef = React.createRef();
+        this.emailRef = React.createRef();
 
     }
    handleSubmit(e)
    {
        e.preventDefault()
        var errors = [];
-        if(this.textRef.current.value="")
+        if(this.textRef.current.value.length==0)
         {
-            this.textRef.current.style.borderColor = "red";
+           // this.textRef.current.style.borderColor = "red";
+           console.log("value1")
             errors.push("invalid username");
         }
-        if(this.passRef.current.value=""||this.passRef.current.value.length<8)
+        if(this.passRef.current.value.length<8)
         { 
-            this.passRef.current.style.borderColor = "red";
+           // this.passRef.current.style.borderColor = "red";
+           console.log("value2")
                   errors.push("invaid password")
            
+        }
+        
+       if(this.emailRef.current.value.length<=2||this.emailRef.current.value.indexOf('@')<0||this.emailRef.current.value.indexOf('.')<0)
+        {
+            errors.push("invalid email")
         }
         this.setState({error:errors})
         errors=[]
@@ -34,12 +42,18 @@ class App15 extends Component {
     render(){
         return(
         <div>
+            <br/>
+            <br />
             <ul>
               {this.state.error.map((msg,i)=>{return <li key={i}>{msg}</li>})}
+              {
+                  console.log(this.state.error.length)
+              }
             </ul>
            <form onSubmit={this.handleSubmit.bind(this)}>
-         <input type="text" ref = {this.textRef}/>
-         <input type="password" ref={this.passRef} />
+           <label>email:</label> <input type="text" ref = {this.emailRef}/>
+        <label>username:</label> <input type="text" ref = {this.textRef}/>
+         <label>password</label><input type="password" ref={this.passRef} />
          <button  type="submit">submit</button>
            </form>
 
