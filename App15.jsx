@@ -31,7 +31,7 @@ class App15 extends Component {
            
         }
         
-       if(this.emailRef.current.value.length<=2||this.emailRef.current.value.indexOf('@')<0||this.emailRef.current.value.indexOf('.')<0)
+       if(this.emailRef.current.value.length<=5||this.emailRef.current.value.indexOf('@')<0||this.emailRef.current.value.indexOf('.')<0)
         {
             errors.push("invalid email")
         }
